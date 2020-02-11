@@ -1,0 +1,6 @@
+.pio
+CMakeListsPrivate.txt
+
+# Project exclude paths
+/cmake-build-esp32dev/
+
