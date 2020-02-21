@@ -15,13 +15,12 @@ Core core;
 
 
 void setup() {
-    Serial.begin(115200);
-    core.connect();
-    initMovement();
-    initRelay();
-    initRoomSensors();
-    Serial.println("ready");
-
+//    Serial.begin(115200);
+//    core.connect();
+//    initMovement();
+//    initRelay();
+//    initRoomSensors();
+//    Serial.println("ready");
 }
 
 

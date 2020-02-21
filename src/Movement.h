@@ -15,5 +15,6 @@ void setLightSenseLevel(int value);
 int getLightSenseLevel();
 void setForceLight(int value);
 int getForceLight();
+unsigned long getLastTrigger();
 
 #endif //OAQ_MOVEMENT_H

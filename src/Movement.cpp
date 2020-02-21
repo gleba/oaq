@@ -1,11 +1,11 @@
 // Created by soul on 05.02.2020.
 //
-
 #include <esp32-hal.h>
 #include <Arduino.h>
 #include <thread>
 #include "Movement.h"
 #include "Relay.h"
+#include "Core.h"
 
 const int motion_sensor = GPIO_NUM_26;
 const auto check_interval = std::chrono::seconds{2};
@@ -17,6 +17,7 @@ unsigned long high_light = 3 * 60 * 1000;
 unsigned long low_light = 5 * 60 * 1000;
 unsigned long sub_light = 7 * 60 * 1000;
 
+unsigned long msInMin = 60 * 1000;
 
 int sparseness = 3500;
 int max_sparseness = 4000;
@@ -79,5 +80,8 @@ void setLightSenseLevel(int value) {
 
 int getLightSenseLevel() {
     return sparseness;
+}
+unsigned long getLastTrigger() {
+    return last_trigger;
 }
 

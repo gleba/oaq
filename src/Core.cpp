@@ -13,6 +13,8 @@ AsyncWebServer server(80);
 
 
 int fanSpeed = 200;
+int fanDcSpeed = 100;
+int subLightTime = 100;
 
 void setUpRoutes(){
     Serial.println("set up http routes");
@@ -46,16 +48,25 @@ void setUpRoutes(){
                 fanSpeed = p->value().toInt();
                 ledcWrite(0, fanSpeed);
             }
+            if (p->name()=="dc"){
+                fanDcSpeed = p->value().toInt();
+                ledcWrite(1, fanDcSpeed);
+            }
         }
-        content = content+"\nL:"+analogRead(GPIO_NUM_35);
-        content = content+"\nC:"+getComfortLevel();
-        content = content + "\nLS:" + getLightSenseLevel();
-        content = content + "\nFl:" + getForceLight();
+        content = content+"\nLigthSense:"+analogRead(GPIO_NUM_14);
+        content = content+"\nComfort:"+getComfortLevel();
+        content = content + "\nLigthSenseTrigger:" + getLightSenseLevel();
+        content = content + "\nForceLigth:" + getForceLight();
         content = content + "\nFan:" + fanSpeed;
-
+        content = content + "\nDCFan:" + fanDcSpeed;
+        content = content + "\nlastTrigger:" + getLastTrigger();
         request->send(200, "text/plain", content);
     });
 }
+
+//int Core::getSubLigthTime(){
+//    return
+//}
 
 
 void Core::connect() {
@@ -75,5 +86,5 @@ void Core::connect() {
 
     ledcSetup(1, 24, 8);
     ledcAttachPin(GPIO_NUM_33, 1);
-    ledcWrite(1, 0  );
+    ledcWrite(1, fanDcSpeed);
 }

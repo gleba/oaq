@@ -7,7 +7,7 @@
 #include "Relay.h"
 
 
-const int pins[4] = {4, 13, 12, 25};
+const int pins[4] = {12, 13, 12, 25};
 
 //bool relay_state[4] = {false, false, false, false};
 
@@ -15,7 +15,7 @@ void initRelay(){
     Serial.println("initRelay");
     for(const int &pin : pins) {
         pinMode(pin, OUTPUT);
-        digitalWrite(pin, HIGH);
+//        digitalWrite(pin, HIGH);
     }
 }
 void relayPower(int num, bool value){
